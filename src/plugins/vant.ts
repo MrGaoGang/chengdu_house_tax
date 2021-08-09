@@ -1,18 +1,23 @@
-import Vue from 'vue';
-import 'vant/lib/index.css';
+import Vue from "vue";
+import "vant/lib/index.css";
 
-import { Button } from 'vant';
-import { Cell, CellGroup } from 'vant';
-import { Icon } from 'vant';
-import { Field } from 'vant';
-import { Form } from 'vant';
-import { RadioGroup, Radio } from 'vant';
-import { Switch } from 'vant';
-import { Stepper } from 'vant';
-import { PullRefresh } from 'vant';
-import { Grid, GridItem } from 'vant';
-import { Image as VanImage } from 'vant';
+import { Button } from "vant";
+import { Cell, CellGroup } from "vant";
+import { Icon } from "vant";
+import { Field } from "vant";
+import { Form } from "vant";
+import { RadioGroup, Radio } from "vant";
+import { Switch } from "vant";
+import { Stepper } from "vant";
+import { PullRefresh } from "vant";
+import { Grid, GridItem } from "vant";
+import { Image as VanImage } from "vant";
+import { NavBar } from "vant";
+import { Step, Steps } from "vant";
 
+Vue.use(Step);
+Vue.use(Steps);
+Vue.use(NavBar);
 Vue.use(VanImage);
 Vue.use(Grid);
 Vue.use(GridItem);

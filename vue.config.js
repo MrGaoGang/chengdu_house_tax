@@ -1,3 +1,4 @@
 module.exports = {
-  publicPath: "/chengdu-house-tax",
+  publicPath:
+    process.env.NODE_ENV === "production" ? "/chengdu-house-tax" : "/",
 };

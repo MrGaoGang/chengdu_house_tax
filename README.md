@@ -1,24 +1,5 @@
-# chengdu-house-tax
+# 成都二手房首付计算器
 
-## Project setup
-```
-yarn install
-```
+使用微信/QQ扫码如下二维码
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![](./docs/icon.png)
