@@ -102,7 +102,7 @@ export function taxCost(
       tips: `满五唯一，增值税为0，否则为房子的总价5%`,
     },
     {
-      name: "转移等级费",
+      name: "转移登记费",
       num: 80,
     },
     {
