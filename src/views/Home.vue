@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="tools-item-title">成都买房工具集</div>
+    <div class="tools-item-title">成都二手房工具集</div>
     <van-grid :column-num="3" class="tools-group">
       <van-grid-item
         v-for="each in menus"

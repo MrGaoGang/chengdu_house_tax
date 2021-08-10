@@ -9,7 +9,7 @@
     <iframe
       width="100%"
       height="100%"
-      src="https://docs.qq.com/pdf/DSHByQ09jblhtbW9C"
+      src="https://docs.qq.com/doc/DSEZWVExWb1J0UXRo"
       frameborder="0"
     ></iframe>
   </div>
