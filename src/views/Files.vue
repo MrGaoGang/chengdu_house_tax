@@ -19,13 +19,15 @@
 </template>
 
 <script>
+const publicPath =
+  process.env.NODE_ENV === "production" ? "/chengdu-house-tax" : "";
 export default {
   data() {
     return {
       list: [
         {
           name: "增值税政策",
-          url: "/files/增值税.html",
+          url: `${publicPath}/files/增值税.html`,
         },
         {
           name: "关于2021.9.1契税上调问题",
