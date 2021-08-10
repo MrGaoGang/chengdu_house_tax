@@ -14,7 +14,12 @@ import { Grid, GridItem } from "vant";
 import { Image as VanImage } from "vant";
 import { NavBar } from "vant";
 import { Step, Steps } from "vant";
+import { Swipe, SwipeItem } from "vant";
+import { List } from "vant";
 
+Vue.use(List);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
 Vue.use(Step);
 Vue.use(Steps);
 Vue.use(NavBar);

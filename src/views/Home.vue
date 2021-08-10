@@ -29,12 +29,17 @@ export default {
         {
           icon: "discount",
           name: "首付计算",
-          url:"/tax"
+          url: "/tax",
         },
         {
           icon: "balance-list-o",
           name: "买房步骤",
-          url:"/steps"
+          url: "/steps",
+        },
+        {
+          icon: "newspaper-o",
+          name: "政策文件",
+          url: "/file",
         },
       ],
     };
