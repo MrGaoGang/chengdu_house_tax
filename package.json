@@ -1,13 +1,13 @@
 {
   "name": "chengdu-house-tax",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "prepare": "husky install",
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -32,11 +32,13 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-plugin-import": "^1.13.3",
+    "chalk": "^4.1.2",
     "conventional-changelog-cli": "^2.1.1",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^7.0.1",
+    "inquirer": "^8.1.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "precommit": "^1.2.2",
