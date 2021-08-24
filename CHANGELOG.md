@@ -1,4 +1,4 @@
-# 1.1.0 (2021-08-24)
+# [1.1.0](https://github.com/MrGaoGang/chengdu_house_tax/compare/782eb878891c95f0cc31f2457ce61b1ee74fd5b5...v1.1.0) (2021-08-24)
 
 
 ### Bug Fixes
