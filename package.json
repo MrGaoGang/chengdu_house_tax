@@ -10,6 +10,7 @@
     "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vant": "^2.12.25",
     "vue": "^2.6.11",

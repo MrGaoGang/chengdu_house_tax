@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { getAllNews } from "@/servers/news";
 const publicPath =
   process.env.NODE_ENV === "production" ? "/chengdu-house-tax" : "";
 export default {
@@ -35,6 +36,16 @@ export default {
         },
       ],
     };
+  },
+  beforeMount() {
+    getAllNews().then((res) => {
+      this.list = (res || []).map((ele) => {
+        return {
+          name: ele.desc,
+          url: ele.url,
+        };
+      });
+    });
   },
   methods: {
     onClickLeft() {
