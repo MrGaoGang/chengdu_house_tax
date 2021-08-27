@@ -6,12 +6,27 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <img v-if="isImage(url)"  :src="url" width="100%" height="100%" />
-    <iframe v-else width="100%" height="100%" :src="url" frameborder="0"></iframe>
+    <img
+      v-if="isImage(url)"
+      :src="url"
+      width="100%"
+      data-action="zoom"
+      height="auto"
+      class="img-zoomable"
+    />
+    <iframe
+      v-else
+      width="100%"
+      height="100%"
+      :src="url"
+      frameborder="0"
+    ></iframe>
   </div>
 </template>
 
 <script>
+import Zooming from "zooming";
+
 export default {
   data() {
     return {
@@ -20,14 +35,28 @@ export default {
   },
   mounted() {
     this.url = this.$route.query.url;
+    if (this.isImage()) {
+      this.$nextTick(() => {
+        const zooming = new Zooming({
+          // options...
+          scaleBase:0.8
+        });
+        zooming.listen("img");
+      });
+    }
   },
   methods: {
     onClickLeft() {
       this.$router.go(-1);
     },
-    isImage(){
-      return this.url.endsWith('jpg') || this.url.endsWith('jpeg') || this.url.endsWith('png') || this.url.endsWith('gig')
-    }
+    isImage() {
+      return (
+        this.url.endsWith("jpg") ||
+        this.url.endsWith("jpeg") ||
+        this.url.endsWith("png") ||
+        this.url.endsWith("gig")
+      );
+    },
   },
 };
 </script>
