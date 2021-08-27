@@ -6,7 +6,7 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <img v-if="isImage(url)" />
+    <img v-if="isImage(url)" :url="url" />
     <iframe v-else width="100%" height="100%" :src="url" frameborder="0"></iframe>
   </div>
 </template>
