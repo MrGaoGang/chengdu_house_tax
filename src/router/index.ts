@@ -62,7 +62,16 @@ const routes: Array<RouteConfig> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "houes" */ "../views/AddHouses.vue"),
+      import(/* webpackChunkName: "houes-add */ "../views/AddHouses.vue"),
+  },
+  {
+    path: "/houes-diff",
+    name: "houes-diff",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "houes-diff" */ "../views/DiffHouse.vue"),
   },
 ];
 

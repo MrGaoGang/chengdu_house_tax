@@ -16,7 +16,10 @@
           <div
             v-for="(each, index) in houses"
             :key="each.id"
-            class="item-house-wrapper"
+            @click="onItemClick(each, index)"
+            :class="
+              each._diff ? 'item-house-wrapper diff' : 'item-house-wrapper'
+            "
           >
             <div class="num">
               <van-tag type="primary">{{ index + 1 }}</van-tag>
@@ -53,6 +56,8 @@
       close-on-click-action
       @cancel="onCancel"
     />
+
+    <div class="diff-house-btn" @click="showHouseDiff">对/比</div>
   </div>
 </template>
 
@@ -61,7 +66,7 @@ import { deleteHouse, getAllHouses } from "@/servers/house";
 import ItemHouses from "../components/ItemHouse.vue";
 import { utc2beijing } from "@/utils";
 import { ImagePreview, Toast } from "vant";
-import { SET_SELECT_HOUSE } from "@/store/mutation-type";
+import { SET_DIFF_HOUSES, SET_SELECT_HOUSE } from "@/store/mutation-type";
 export default {
   components: {
     ItemHouses,
@@ -73,6 +78,8 @@ export default {
       show: false,
       actions: [{ name: "编辑" }, { name: "删除", color: "#ed4014" }],
       selectInfo: {},
+      isActiveDiff: false,
+      diffSelectList: [],
     };
   },
   created() {
@@ -96,6 +103,29 @@ export default {
     },
     onCancel() {
       this.show = false;
+    },
+    onItemClick(each, index) {
+      if (this.isActiveDiff) {
+        this.diffSelectList.push(each);
+        this.houses.splice(index, 1, {
+          ...each,
+          _diff: 1,
+        });
+        if (this.diffSelectList.length === 2) {
+          this.$store.commit(SET_DIFF_HOUSES, {
+            oneInfo: this.diffSelectList[0],
+            twoInfo: this.diffSelectList[1],
+          });
+          this.$router.push("/houes-diff");
+        }
+      }
+    },
+    showHouseDiff() {
+      this.isActiveDiff = true;
+      const len = this.diffSelectList.length;
+      if (len < 2) {
+        Toast("请选择列表中的【两个】房子", {});
+      }
     },
     onPreviewImages(each) {
       ImagePreview(JSON.parse(each.imgs).map((ele) => ele.url));
@@ -131,11 +161,23 @@ export default {
 </script>
 
 <style lang="less">
+.diff-house-btn {
+  width: 60px;
+  height: 60px;
+  bottom: 60px;
+  right: 30px;
+  position: fixed;
+  background-color: #2b85e4;
+  border-radius: 50%;
+  color: white;
+  line-height: 60px;
+}
 .houses {
   display: flex;
   flex-direction: column;
   .show-more {
   }
+
   .item-house-wrapper {
     position: relative;
     width: calc(100% - 30px);
@@ -185,6 +227,10 @@ export default {
         color: #ed4014;
       }
     }
+  }
+
+  .item-house-wrapper.diff {
+    background-color: #2b85e4;
   }
 }
 </style>

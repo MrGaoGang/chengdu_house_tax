@@ -1,1 +1,3 @@
 export const SET_SELECT_HOUSE = "SET_SELECT_HOUSE";
+
+export const SET_DIFF_HOUSES = "SET_DIFF_HOUSES";

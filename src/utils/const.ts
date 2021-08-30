@@ -1,0 +1,15 @@
+export const HOUSE_NAME_MAP = {
+  area: "房子面积(m2)",
+  caiguang: "采光",
+  distance: "离商场距离",
+  env: "小区环境",
+  firstPay: "首付金额",
+  huxingOrChaoXiang: "户型/朝向",
+  imgs: "图片集",
+  jiaotong: "交通如何",
+  name: "房子名称+楼层",
+  price: "总金额(万)",
+  wuye: "物业",
+  xuewei: "是否有学位",
+  xueweiEnable: "学位是否可用",
+};
