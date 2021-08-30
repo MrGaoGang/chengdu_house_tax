@@ -126,7 +126,7 @@ export default {
     uploadFile(file, index) {
       const folder = "chengdu-house-tax/cdn/";
       return new Promise((resolve, reject) => {
-        cos.putObject(
+        cos.uploadFile(
           {
             Bucket: "ui-builder-1252273386" /* 必须 */,
             Region: "ap-nanjing" /* 存储桶所在地域，必须字段 */,
@@ -136,6 +136,11 @@ export default {
               file.name.substring(file.name.lastIndexOf(".")) /* 必须 */,
             StorageClass: "STANDARD",
             Body: file, // 上传文件对象
+            SliceSize:
+              1024 *
+              1024 *
+              2 /* 触发分块上传的阈值，超过5MB使用分块上传，非必须 */,
+
             onProgress: function (progressData) {
               console.log(JSON.stringify(progressData));
             },
