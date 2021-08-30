@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Zooming from "zooming";
+import { ImagePreview } from "vant";
 
 export default {
   data() {
@@ -37,11 +37,7 @@ export default {
     this.url = this.$route.query.url;
     if (this.isImage()) {
       this.$nextTick(() => {
-        const zooming = new Zooming({
-          // options...
-          scaleBase:0.8
-        });
-        zooming.listen("img");
+        ImagePreview([this.url]);
       });
     }
   },

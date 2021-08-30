@@ -39,7 +39,7 @@ export default {
   },
   beforeMount() {
     getAllNews().then((res) => {
-      this.list = (res.data || []).map((ele) => {
+      this.list = (res || []).map((ele) => {
         return {
           name: ele.desc,
           url: ele.url,

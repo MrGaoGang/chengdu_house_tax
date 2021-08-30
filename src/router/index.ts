@@ -44,11 +44,31 @@ const routes: Array<RouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/FileDetail.vue"),
+      
+  },
+  {
+    path: "/houses",
+    name: "houses",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "houes" */ "../views/Houses.vue"),
+  },
+  {
+    path: "/houes-add",
+    name: "houes-add",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "houes" */ "../views/AddHouses.vue"),
   },
 ];
 
 const router = new VueRouter({
   routes,
 });
+
 
 export default router;

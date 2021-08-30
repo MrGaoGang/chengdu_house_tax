@@ -1,8 +1,8 @@
 import { requestWrapper } from "./base";
 
-export async function getAllNews() {
+export async function getCosInfo() {
   return await requestWrapper({
-    url: "/news",
+    url: "/cos-tmp",
     method: "GET",
   });
 }

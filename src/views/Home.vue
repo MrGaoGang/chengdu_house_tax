@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { getQuery, setItem } from "@/utils/url";
 // @ is an alias to /src
 
 export default {
@@ -41,8 +42,16 @@ export default {
           name: "政策文件",
           url: "/file",
         },
+        {
+          icon: "cart-circle-o",
+          name: "房子清单",
+          url: "/houses",
+        },
       ],
     };
+  },
+  created() {
+    setItem("iphone_num", getQuery("phone"));
   },
 };
 </script>

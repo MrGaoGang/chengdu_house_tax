@@ -1,6 +1,6 @@
 import Vue from "vue";
 import "vant/lib/index.css";
-
+import NavBarCustom from "../components/NavBar.vue";
 import { Button } from "vant";
 import { Cell, CellGroup } from "vant";
 import { Icon } from "vant";
@@ -16,7 +16,22 @@ import { NavBar } from "vant";
 import { Step, Steps } from "vant";
 import { Swipe, SwipeItem } from "vant";
 import { List } from "vant";
+import { Empty } from "vant";
+import { Rate } from "vant";
+import { Tag } from "vant";
+import { Toast } from "vant";
+import { ActionSheet } from "vant";
+import { ImagePreview } from "vant";
+import { Uploader } from "vant";
 
+Vue.use(Uploader);
+// 全局注册
+Vue.use(ImagePreview);
+Vue.use(ActionSheet);
+Vue.use(Toast);
+Vue.use(Tag);
+Vue.use(Rate);
+Vue.use(Empty);
 Vue.use(List);
 Vue.use(Swipe);
 Vue.use(SwipeItem);
@@ -37,3 +52,4 @@ Vue.use(Cell);
 Vue.use(CellGroup);
 Vue.use(Icon);
 Vue.use(Field);
+Vue.component(NavBarCustom.name, NavBarCustom);

@@ -1,0 +1,1 @@
+export const SET_SELECT_HOUSE = "SET_SELECT_HOUSE";
