@@ -9,7 +9,7 @@ type WrapperTypes = {
   method: "GET" | "POST";
   url: string;
   params?: {
-    [key: string]: string | number | undefined;
+    [key: string]: string | number | undefined | null;
   };
 };
 const instance = axios.create({
