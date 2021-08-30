@@ -51,7 +51,11 @@ export default {
     };
   },
   created() {
-    setItem("iphone_num", getQuery("phone"));
+    const phone = getQuery("phone");
+    if (!phone) {
+      this.menus.splice(3, 1);
+    }
+    setItem("iphone_num", phone);
   },
 };
 </script>
