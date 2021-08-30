@@ -5,6 +5,8 @@ export type HouseInfoType = Partial<{
   price: number;
   firstPay: number;
   env: number;
+  priority: number | undefined | null;
+  fiveOnly: null | undefined | number;
   wuye: number;
   xuewei: number;
   xueweiEnable: number;

@@ -11,5 +11,6 @@ export const HOUSE_NAME_MAP = {
   price: "总金额(万)",
   wuye: "物业",
   xuewei: "是否有学位",
+  fiveOnly: "五年唯一",
   xueweiEnable: "学位是否可用",
 };

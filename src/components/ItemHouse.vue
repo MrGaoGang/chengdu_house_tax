@@ -40,6 +40,15 @@
         <van-rate v-model="houseInfo.wuye" :disabled="disabled" />
       </template>
     </van-field>
+    <van-field name="fiveOnly" label="满五唯一">
+      <template #input>
+        <!-- <van-switch v-model="houseInfo.vuewei" :disabled="disabled" /> -->
+        <van-radio-group v-model="houseInfo.fiveOnly" :disabled="disabled">
+          <van-radio :name="1">是</van-radio>
+          <van-radio :name="0">否</van-radio>
+        </van-radio-group>
+      </template>
+    </van-field>
     <van-field name="xuewei" label="有学位">
       <template #input>
         <!-- <van-switch v-model="houseInfo.vuewei" :disabled="disabled" /> -->
@@ -49,6 +58,7 @@
         </van-radio-group>
       </template>
     </van-field>
+
     <van-field name="xueweiEnable" label="学位是否可用">
       <template #input>
         <van-radio-group v-model="houseInfo.xueweiEnable" :disabled="disabled">

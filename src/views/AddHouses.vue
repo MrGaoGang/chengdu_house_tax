@@ -34,6 +34,8 @@ export default {
         env: 0,
         firstPay: null,
         huxingOrChaoXiang: 0,
+        fiveOnly: 0,
+        priority: 0,
         imgs: "[]",
         jiaotong: 0,
         name: "",

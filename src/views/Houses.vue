@@ -6,7 +6,7 @@
       left-arrow
       @click-left="onClickLeft"
     >
-      <template #right>
+      <template #right v-if="hasPhone">
         <van-icon name="add-o" size="24" @click="onCreateHouse" />
       </template>
     </van-nav-bar>
@@ -24,6 +24,11 @@
             <div class="num">
               <van-tag type="primary">{{ index + 1 }}</van-tag>
             </div>
+            <van-icon
+              :name="each.priority === 1 ? 'like' : 'like-o'"
+              @click="updateHouse(each)"
+              :class="'show-like' + (each.priority === 1 ? ' love' : '')"
+            />
             <van-icon
               size="18"
               name="ellipsis"
@@ -57,22 +62,30 @@
       @cancel="onCancel"
     />
 
-    <div class="diff-house-btn" @click="showHouseDiff">对/比</div>
+    <div
+      class="diff-house-btn"
+      v-if="hasPhone && houses.length >= 2"
+      @click="showHouseDiff"
+    >
+      对/比
+    </div>
   </div>
 </template>
 
 <script>
-import { deleteHouse, getAllHouses } from "@/servers/house";
+import { deleteHouse, getAllHouses, updateHouses } from "@/servers/house";
 import ItemHouses from "../components/ItemHouse.vue";
 import { utc2beijing } from "@/utils";
 import { ImagePreview, Toast } from "vant";
 import { SET_DIFF_HOUSES, SET_SELECT_HOUSE } from "@/store/mutation-type";
+import { getItem } from "@/utils/url";
 export default {
   components: {
     ItemHouses,
   },
   data() {
     return {
+      hasPhone: !!getItem("iphone_num"),
       refreshing: false,
       houses: [],
       show: false,
@@ -83,11 +96,32 @@ export default {
     };
   },
   created() {
-    getAllHouses().then((res) => {
-      this.houses = res;
-    });
+    this.refreshPage();
   },
   methods: {
+    refreshPage() {
+      const toast = Toast.loading({
+        duration: 0, // 持续展示 toast
+        forbidClick: true,
+        message: "数据ing..",
+      });
+      getAllHouses()
+        .then((res) => {
+          this.houses = res;
+          Toast.clear();
+        })
+        .catch((res) => {
+          Toast.clear();
+        });
+    },
+    updateHouse(info) {
+      updateHouses({
+        id: info.id,
+        priority: info.priority === 1 ? 0 : 1,
+      }).then((res) => {
+        this.onRefresh(1);
+      });
+    },
     onCreateHouse() {
       this.$router.push("/houes-add");
     },
@@ -124,7 +158,7 @@ export default {
       this.isActiveDiff = true;
       const len = this.diffSelectList.length;
       if (len < 2) {
-        Toast("请选择列表中的【两个】房子", {});
+        Toast("点击选择列表中的【两个】房子", {});
       }
     },
     onPreviewImages(each) {
@@ -136,7 +170,7 @@ export default {
         deleteHouse(this.selectInfo.id)
           .then(() => {
             Toast.success("删除成功!");
-            this.onRefresh();
+            this.onRefresh(1);
           })
           .catch(() => {
             Toast.success("删除失败!");
@@ -146,14 +180,14 @@ export default {
         this.$router.push({ path: "/houes-add", query: { edit: 1 } });
       }
     },
-    onRefresh() {
+    onRefresh(timeout) {
       this.refreshing = true;
 
       getAllHouses().then((res) => {
         this.houses = res;
         setTimeout(() => {
           this.refreshing = false;
-        }, 1000);
+        }, timeout || 1500);
       });
     },
   },
@@ -178,6 +212,16 @@ export default {
   .show-more {
   }
 
+  .show-like {
+    position: absolute;
+    right: 40px;
+    top: 5px;
+    z-index: 2;
+  }
+
+  .show-like.love {
+    color: #ed4014;
+  }
   .item-house-wrapper {
     position: relative;
     width: calc(100% - 30px);
