@@ -106,7 +106,9 @@ export default {
       text-align: center;
       margin-top: 5px;
       min-height: 48px;
-      line-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .active {
       background-color: #19be6b;
