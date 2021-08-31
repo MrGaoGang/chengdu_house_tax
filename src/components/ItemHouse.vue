@@ -4,6 +4,9 @@
       v-model="houseInfo.name"
       label="房子名称"
       placeholder="名称+楼层"
+      rows="1"
+      autosize
+      type="textarea"
       :disabled="disabled"
     >
     </van-field>
@@ -87,6 +90,16 @@
       <template #input>
         <van-rate v-model="houseInfo.huxingOrChaoXiang" :disabled="disabled" />
       </template>
+    </van-field>
+     <van-field
+      v-model="houseInfo.desc"
+      label="其他信息"
+      placeholder=""
+      rows="1"
+      autosize
+      type="textarea"
+      :disabled="disabled"
+    >
     </van-field>
     <slot />
   </van-form>

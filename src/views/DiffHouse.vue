@@ -47,7 +47,7 @@ export default {
       },
     });
     Object.keys(HOUSE_NAME_MAP).forEach((ele) => {
-      if (ele === "imgs" || ele === "name") {
+      if (ele === "imgs" || ele === "name" || ele === "desc") {
         return;
       }
       if (["price", "firstPay"].indexOf(ele) !== -1) {
@@ -78,6 +78,15 @@ export default {
           },
         });
       }
+    });
+    this.items.push({
+      name: "其他信息",
+      left: {
+        num: this.oneInfo.desc,
+      },
+      right: {
+        num: this.twoInfo.desc,
+      },
     });
   },
 };

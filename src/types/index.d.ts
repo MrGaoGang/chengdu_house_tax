@@ -15,6 +15,7 @@ export type HouseInfoType = Partial<{
   jiaotong: number;
   huxingOrChaoXiang: number;
   imgs: string;
+  desc: string;
   createdAt: string;
   updatedAt: string;
 }>;

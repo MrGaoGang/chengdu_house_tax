@@ -43,6 +43,7 @@ export default {
         wuye: 0,
         xuewei: 0,
         xueweiEnable: 0,
+        desc: "",
       },
       cosInfo: {},
     };
