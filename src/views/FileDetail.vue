@@ -39,6 +39,8 @@ export default {
       this.$nextTick(() => {
         ImagePreview([this.url]);
       });
+    } else if (this.url.startsWith("https") || this.url.startsWith("http")) {
+      window.open(this.url);
     }
   },
   methods: {
@@ -50,7 +52,7 @@ export default {
         this.url.endsWith("jpg") ||
         this.url.endsWith("jpeg") ||
         this.url.endsWith("png") ||
-        this.url.endsWith("gig")
+        this.url.endsWith("gif")
       );
     },
   },
