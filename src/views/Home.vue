@@ -4,11 +4,11 @@
     <van-grid :column-num="3" class="tools-group">
       <van-grid-item
         v-for="each in menus"
-        :key="each.name"
+        :key="each.url"
         :icon="each.icon"
         class="menu-item"
         :text="each.name"
-        :to="each.url"
+        @click="goTo(each.url)"
       >
         <!-- <van-image :src="each.icon" />
         <span class="menu-item-label">{{ each.name }}</span> -->
@@ -42,10 +42,16 @@ export default {
           name: "政策文件",
           url: "/file",
         },
+
         {
           icon: "cart-circle-o",
           name: "房子清单",
           url: "/houses",
+        },
+        {
+          icon: "shop-o",
+          name: "买卖流程",
+          url: "https://dora.jiaoyi.ke.com/dorami/home/flow?dora_source=dorami&sharePageSource=share_from_beike&cityCode=510100&cityName=%E6%88%90%E9%83%BD&houseCityCode=510100&parentSceneId=5768502105532950272&duid=DuH7mHTWmAv%2Fy2jLW7xH6lYSdoU6y%2B%2Fj5QgiI6j9aUNokbicY02%2FW0oFKdv546lC6v51wjwbrmci0f2Hkh3dPzzw",
         },
       ],
     };
@@ -56,6 +62,15 @@ export default {
       this.menus.splice(3, 1);
     }
     setItem("iphone_num", phone);
+  },
+  methods: {
+    goTo(url = "") {
+      if (url.startsWith("http") || url.startsWith("https")) {
+        this.$router.push({ path: `file-detail`, query: { url: url } });
+      } else {
+        this.$router.push({ path: url });
+      }
+    },
   },
 };
 </script>

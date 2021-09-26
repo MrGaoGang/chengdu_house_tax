@@ -18,8 +18,10 @@
       v-else
       width="100%"
       height="100%"
+      id="iframe"
       :src="url"
       frameborder="0"
+      @error="onFrameError"
     ></iframe>
   </div>
 </template>
@@ -39,13 +41,25 @@ export default {
       this.$nextTick(() => {
         ImagePreview([this.url]);
       });
-    } else if (this.url.startsWith("https") || this.url.startsWith("http")) {
-      window.open(this.url);
+    }
+    if (this.url.startsWith("https") || this.url.startsWith("http") && this.isWhiteList()) {
+             window.open(this.url);
     }
   },
   methods: {
     onClickLeft() {
       this.$router.go(-1);
+    },
+    isWhiteList(){
+      const  white = ['ke.com','gaogang'];
+      for (let i = 0; i < white.length; i++) {
+        const ele = white[i];
+        if(this.url.indexOf(ele)!==-1){
+          return false;
+        }
+        
+      }
+      return true;
     },
     isImage() {
       return (
@@ -54,6 +68,12 @@ export default {
         this.url.endsWith("png") ||
         this.url.endsWith("gif")
       );
+    },
+    onFrameError(e) {
+      console.log(e, "===========");
+      if (this.url.startsWith("https") || this.url.startsWith("http")) {
+        window.open(this.url);
+      }
     },
   },
 };
