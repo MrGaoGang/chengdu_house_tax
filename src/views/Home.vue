@@ -55,7 +55,7 @@ export default {
         },
         {
           icon: "records",
-          name: "注意实现列表",
+          name: "注意事项列表",
           url: "https://docs.qq.com/sheet/DSGVkRVhiUHd5Snh3?tab=BB08J2",
         },
       ],
