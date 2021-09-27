@@ -53,6 +53,11 @@ export default {
           name: "买卖流程",
           url: "https://dora.jiaoyi.ke.com/dorami/home/flow?dora_source=dorami&sharePageSource=share_from_beike&cityCode=510100&cityName=%E6%88%90%E9%83%BD&houseCityCode=510100&parentSceneId=5768502105532950272&duid=DuH7mHTWmAv%2Fy2jLW7xH6lYSdoU6y%2B%2Fj5QgiI6j9aUNokbicY02%2FW0oFKdv546lC6v51wjwbrmci0f2Hkh3dPzzw",
         },
+        {
+          icon: "records",
+          name: "注意实现列表",
+          url: "https://docs.qq.com/sheet/DSGVkRVhiUHd5Snh3?tab=BB08J2",
+        },
       ],
     };
   },
