@@ -18,8 +18,8 @@
       <van-field name="houseNum" label="购房性质">
         <template #input>
           <van-radio-group v-model="houseNum" direction="horizontal">
-            <van-radio name="true">首套房</van-radio>
-            <van-radio name="false">第二套</van-radio>
+            <van-radio name="1">首套房</van-radio>
+            <van-radio name="2">第二套</van-radio>
             <!-- <van-radio name="3">第三套</van-radio> -->
           </van-radio-group>
         </template>
@@ -201,7 +201,7 @@ export default {
   data() {
     return {
       steps: 0,
-      houseNum: "true",
+      houseNum: "1",
       houseArea: getItem("houseArea") || "",
       housePrice: getItem("housePrice") || "",
       houseBankPrice: getItem("houseBankPrice") || "",

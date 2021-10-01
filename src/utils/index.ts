@@ -91,6 +91,7 @@ export function taxCost(
   houseSellOnly: string //唯一住宅
 ): CostItem {
   let qiTax = 0;
+  
   if (houseNum === 1) {
     qiTax =
       houseArea <= 90 ? housePrice * 10000 * 0.01 : housePrice * 10000 * 0.015;
