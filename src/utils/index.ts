@@ -124,7 +124,7 @@ export function taxCost(
     {
       name: "增值税",
       num: zengZhiTax,
-      tips: `满五唯一，增值税为0，否则为房子的总价5%`,
+      tips: `满五唯一，增值税为0，否则为房子的总价5.6%`,
     },
     {
       name: "转移登记费",
