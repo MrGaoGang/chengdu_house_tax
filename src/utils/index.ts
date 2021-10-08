@@ -105,7 +105,7 @@ export function taxCost(
       ? 0
       : 0.01 * housePrice * 10000;
 
-  const zengZhiTax = houseFiveYear === "true" ? 0 : 0.056 * housePrice * 10000;
+  const zengZhiTax = houseFiveYear === "true" ? 0 : 0.053 * housePrice * 10000;
 
   return [
     {
@@ -124,7 +124,7 @@ export function taxCost(
     {
       name: "增值税",
       num: zengZhiTax,
-      tips: `满五唯一，增值税为0，否则为房子的总价5.6%`,
+      tips: `满五唯一，增值税为0，否则为房子的总价5.3%`,
     },
     {
       name: "转移登记费",
