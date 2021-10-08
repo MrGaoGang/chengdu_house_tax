@@ -105,7 +105,7 @@ export function taxCost(
       ? 0
       : 0.01 * housePrice * 10000;
 
-  const zengZhiTax = houseFiveYear === "true" ? 0 : 0.05 * housePrice * 10000;
+  const zengZhiTax = houseFiveYear === "true" ? 0 : 0.056 * housePrice * 10000;
 
   return [
     {
