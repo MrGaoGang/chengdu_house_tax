@@ -205,12 +205,12 @@ export default {
       houseArea: getItem("houseArea") || "",
       housePrice: getItem("housePrice") || "",
       houseBankPrice: getItem("houseBankPrice") || "",
-      houseFiveYear: getItem("houseFiveYear") || "true",
-      houseSellOnly: getItem("houseSellOnly") || "true",
+      houseFiveYear: getItem("houseFiveYear") || "false",
+      houseSellOnly: getItem("houseSellOnly") || "false",
       housePrePay: getItem("housePrePay") || 30,
 
       // 中介相关
-      houseMedCost: getItem("houseMedCost") || 1.7, // 中介费用
+      houseMedCost: getItem("houseMedCost") || 1.6, // 中介费用
       houseMedBankCost: getItem("houseMedBankCost") || 2000, // 中介去银行跑腿的费用
       // 其他费用
       houseShuLou: getItem("houseShuLou") || 0, // 赎楼费
