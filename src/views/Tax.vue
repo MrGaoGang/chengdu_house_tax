@@ -175,7 +175,12 @@
         >上一步</van-button
       >
 
-      <van-button class="next-btn" v-if="steps !== 3" block type="info" @click="goNextStep"
+      <van-button
+        class="next-btn"
+        v-if="steps !== 3"
+        block
+        type="info"
+        @click="goNextStep"
         >下一步</van-button
       >
     </div>
@@ -240,10 +245,11 @@ export default {
           ),
         },
         {
-          name: "银行预评估费用",
+          name: "银行预评估首付差价",
           items: bankPreCost(
             Number(this.housePrice || "0"),
-            Number(this.houseBankPrice || "0")
+            Number(this.houseBankPrice || "0"),
+            Number(this.housePrePay / 100)
           ),
         },
         {

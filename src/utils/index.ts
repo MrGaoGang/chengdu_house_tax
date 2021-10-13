@@ -1,6 +1,6 @@
 export type CostItem = {
   name: string;
-  num: number;
+  num: number | string;
   tips?: string;
 }[];
 
@@ -73,11 +73,15 @@ export function middleCost(
  * @param percent
  * @returns
  */
-export function bankPreCost(totalPrice: number, bankPrice: number): CostItem {
+export function bankPreCost(
+  totalPrice: number,
+  bankPrice: number,
+  percent: number
+): CostItem {
   return [
     {
       name: "首付差价",
-      num: (totalPrice - bankPrice) * 0.7 * 10000,
+      num: Number((totalPrice - bankPrice) * (1 - percent) * 10000).toFixed(2),
       tips: "房屋评估是银行批贷的必要动作，因为银行是不以成交价格为参考发放贷款的，通常银行会指定评估公司来进行房屋估价，然后根据估价给出贷款额度，也就是说当你的成交价是300万，房屋评估价是280万，你要贷款70%，也就是280万×70%=196万，那么你就要准备300万-196万=104万的首付，之前已经支付了300*0.3=90万的首付款，也就是需要补差价104-90=14万的首付款差价，而最终的评估费，根据评估价的万分之一到万分之五进行收取",
     },
   ];
@@ -91,7 +95,7 @@ export function taxCost(
   houseSellOnly: string //唯一住宅
 ): CostItem {
   let qiTax = 0;
-  
+
   if (houseNum === 1) {
     qiTax =
       houseArea <= 90 ? housePrice * 10000 * 0.01 : housePrice * 10000 * 0.015;
