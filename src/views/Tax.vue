@@ -140,32 +140,62 @@
         @click-left-icon="showShuLouTips('houseOther')"
         input-align="right"
       />
+      <van-field
+        v-model="dingJin"
+        name="dingJin"
+        type="number"
+        label="定金(元)"
+        placeholder="单位/元"
+        left-icon="warning-o"
+        @click-left-icon="showShuLouTips('dingJin')"
+        input-align="right"
+      />
     </van-form>
     <!-- 展示结果 -->
     <div v-if="steps === 3">
       <div class="tax-result">
         <div class="top-panel">
-          二手房总首付
-          <div class="total-money">
-            {{ numberConversion(results.total) }}万元
+          <div class="top-panel-item">
+            二手房总首付
+            <div class="total-money">
+              {{ numberConversion(results.total) }}万元
+            </div>
+          </div>
+          <div class="top-panel-item" v-if="hasPays.length > 0">
+            还未支付
+            <div class="total-money">{{ numberConversion(notPay) }}万元</div>
           </div>
         </div>
+
         <div class="total-detail-title">明细如下:</div>
-        <div class="item-cost" v-for="each in results.details" :key="each.name">
-          <div class="item-cost-label">
-            {{ each.name + "【" + getItemTotals(each.items) + "】" }}
-          </div>
-          <van-field
-            v-for="item in each.items"
-            :value="toThree(item.num) + '元'"
-            :key="item.name"
-            readonly
-            :left-icon="item.tips ? 'warning-o' : ''"
-            @click-left-icon="showTips(item.tips)"
-            input-align="right"
-            :label="item.name"
-          />
-        </div>
+        <van-checkbox-group v-model="hasPays">
+          <van-cell-group>
+            <div
+              class="item-cost"
+              v-for="each in results.details"
+              :key="each.name"
+            >
+              <div class="item-cost-label">
+                {{ each.name + "【" + getItemTotals(each.items) + "】" }}
+              </div>
+              <van-cell
+                v-for="(item, index) in each.items"
+                :value="toThree(item.num) + '元'"
+                :key="item.name"
+                readonly
+                clickable
+                :left-icon="item.tips ? 'warning-o' : ''"
+                @click-left-icon="showTips(item.tips)"
+                input-align="right"
+                :title="item.name"
+                @click-right-icon="toggle(index)"
+              >
+                <template #right-icon>
+                  <van-checkbox :name="item" ref="checkboxes" /> </template
+              ></van-cell>
+            </div>
+          </van-cell-group>
+        </van-checkbox-group>
       </div>
     </div>
 
@@ -200,6 +230,7 @@ const tips = {
     "购买二手房所要涉及的全部重头费用，除此之外，<strong>二手房买卖中还有一些小额的费用产出，如房本费、贴花、产权登记费等</strong>，费用几元到几十元不等",
   houseMedBankCost:
     "按揭服务费没有固定标准，因为银行办理贷款并不需要收取服务费！且办理贷款的每个环节都需买家的参与，中介一路陪跑，但是中介会告诉你这笔莫名其妙的费用，是他们的按揭员为整个买卖交易流程服务的所得，你怎么可以不交纳？这里仍然以深圳为例，按揭服务费的收费区间在1000-5000元不等",
+  dingJin: "首付定金数量",
 };
 
 export default {
@@ -220,6 +251,9 @@ export default {
       // 其他费用
       houseShuLou: getItem("houseShuLou") || 0, // 赎楼费
       houseOther: getItem("houseOther") || 500, // 其他额外费用
+      dingJin: getItem("dingJin") || 0,
+      hasPays: [],
+      notPay: 0,
     };
   },
   computed: {
@@ -233,7 +267,8 @@ export default {
           name: "首付房款费用",
           items: fisrtPayCost(
             Number(this.housePrice || "0"),
-            this.housePrePay / 100
+            this.housePrePay / 100,
+            this.dingJin
           ),
         },
         {
@@ -275,7 +310,22 @@ export default {
       };
     },
   },
+  watch: {
+    hasPays: {
+      immediate: true,
+      deep: true,
+      handler(val) {
+        const total = val.reduce((pre, now) => {
+          return pre + Number(String(now.num));
+        }, 0);
+        this.notPay = Number(String(this.results.total - total)).toFixed(2);
+      },
+    },
+  },
   methods: {
+    toggle(index) {
+      this.$refs.checkboxes[index].toggle();
+    },
     onClickLeft() {
       this.$router.replace("/");
     },
@@ -307,6 +357,7 @@ export default {
         case 3:
           setItem("houseShuLou", this.houseShuLou);
           setItem("houseOther", this.houseOther);
+          setItem("dingJin", this.dingJin);
           break;
       }
     },
@@ -381,6 +432,10 @@ export default {
     border-radius: 10px;
     padding: 20px 10px;
     text-align: left;
+    display: flex;
+    .top-panel-item {
+      flex: 1;
+    }
     .is-senond {
       color: white;
       background-color: #5cadff;
@@ -394,6 +449,9 @@ export default {
       font-weight: bold;
       margin-top: 10px;
     }
+  }
+  .van-cell__value {
+    margin-right: 10px;
   }
 }
 </style>

@@ -34,11 +34,21 @@ export function utc2beijing(utc_datetime: string) {
  * @param percent
  * @returns
  */
-export function fisrtPayCost(totalPrice: number, percent: number): CostItem {
+export function fisrtPayCost(
+  totalPrice: number,
+  percent: number,
+  dingJin: number
+): CostItem {
   return [
     {
-      name: "首付金额",
-      num: Number((totalPrice * percent * 10000).toFixed(0)),
+      name: "定金",
+      num: Number(dingJin + "").toFixed(0),
+    },
+    {
+      name: "剩余首付金额",
+      num:
+        Number((totalPrice * percent * 10000).toFixed(0)) -
+        Number(dingJin + ""),
     },
   ];
 }

@@ -23,7 +23,10 @@ import { Toast } from "vant";
 import { ActionSheet } from "vant";
 import { ImagePreview } from "vant";
 import { Uploader } from "vant";
+import { Checkbox, CheckboxGroup } from 'vant';
 
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
 Vue.use(Uploader);
 // 全局注册
 Vue.use(ImagePreview);
